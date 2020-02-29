@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include "linkedList.h"
+#include "singleLinkedList.h"
 #include <stdlib.h>
 #include <ctype.h>
 
@@ -22,7 +22,7 @@ The pseudocode for this operation is the following:
 2. Point the node's next property to the first element in the list
 3. Change the list's head to point to the created node
 */
-sllnode* insert(sllnode** head, int value)
+void insert(sllnode** head, int value)
 {
     sllnode* node = create(value);
     if (*head != NULL)
@@ -31,7 +31,6 @@ sllnode* insert(sllnode** head, int value)
     }
 
     *head = node;
-    return node;
 }
 
 /*
@@ -110,5 +109,11 @@ void deleteNode(sllnode** head, int value)
         }
         previous = current;
     }
+}
+
+void deleteNodeByPointer(sllnode *nodeToDelete, sllnode *previousNode)
+{
+    previousNode->next = nodeToDelete->next;
+    free(nodeToDelete);
 }
 

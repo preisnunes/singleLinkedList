@@ -4,6 +4,7 @@
 
 void printLinkedList(sllnode *linkedList);
 void removeDuplicatesWithBuffer(sllnode *linkedList, int maximumValue);
+void removeDuplicates(sllnode *linkedList);
 
 int main(void)
 {
@@ -17,8 +18,11 @@ int main(void)
     insert(&listHeader, 5);
     insert(&listHeader, 5);
     insert(&listHeader, 4);
+    insert(&listHeader, 6);
+    insert(&listHeader, 6);
+    
     printLinkedList(listHeader);
-    removeDuplicatesWithBuffer(listHeader, 5);
+    removeDuplicates(listHeader);
     printLinkedList(listHeader);
 }
 
@@ -31,14 +35,34 @@ void removeDuplicatesWithBuffer(sllnode *linkedList, int maximumValue)
     {
         if (duplicates[node->value])
         {
-            sllnodePre->next = node->next;
-            free(node);
+            deleteNodeByPointer(node, sllnodePre);
             node = sllnodePre;
             continue;
         }
         
         duplicates[node->value] = 1;
         sllnodePre = node;
+    }
+}
+
+
+
+void removeDuplicates(sllnode *linkedList)
+{
+    for (sllnode *node = linkedList; node != NULL; node = node->next)
+    {
+        int value = node->value;
+        sllnode *tempNode = node;
+        for (sllnode *nodeAhead = node->next; nodeAhead != NULL; nodeAhead = nodeAhead->next)
+        {
+            if (nodeAhead->value == value)
+            {
+                deleteNodeByPointer(nodeAhead, tempNode);
+                nodeAhead = tempNode;
+                continue;
+            }
+            tempNode = nodeAhead;
+        }
     }
 }
 
