@@ -18,5 +18,6 @@ void insert(sllnode** head, int value);
 void destroy(sllnode* head);
 void deleteNode(sllnode** head, int value);
 void deleteNodeByPointer(sllnode *nodeToDelete, sllnode *previousNode);
+void printLinkedList(sllnode *linkedList);
 
 #endif // DICTIONARY_H

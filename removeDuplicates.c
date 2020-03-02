@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "singleLinkedList.h"
 
-void printLinkedList(sllnode *linkedList);
 void removeDuplicatesWithBuffer(sllnode *linkedList, int maximumValue);
 void removeDuplicates(sllnode *linkedList);
 
@@ -64,14 +63,4 @@ void removeDuplicates(sllnode *linkedList)
             tempNode = nodeAhead;
         }
     }
-}
-
-void printLinkedList(sllnode *linkedList)
-{
-    for (sllnode *tmp = linkedList; tmp != NULL; tmp = tmp->next)
-    {
-        printf("|%d - %p| -> ", tmp->value, tmp->next);
-    }
-
-    printf("\n");
 }

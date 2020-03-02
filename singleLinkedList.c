@@ -117,3 +117,13 @@ void deleteNodeByPointer(sllnode *nodeToDelete, sllnode *previousNode)
     free(nodeToDelete);
 }
 
+void printLinkedList(sllnode *linkedList)
+{
+    for (sllnode *tmp = linkedList; tmp != NULL; tmp = tmp->next)
+    {
+        printf("|%d - %p| -> ", tmp->value, tmp->next);
+    }
+
+    printf("\n");
+}
+
